@@ -25,5 +25,6 @@ public class CalcThread implements Runnable {
         }
         main.setStart(number);
         main.setProgress(number, 0.0);
+        main.setEnable(number);
     }
 }

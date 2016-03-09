@@ -23,11 +23,12 @@ public class Main extends Application {
     Image fire;
     ImageView[] im;
     ProgressBar[] pb;
+    Button btnThread1, btnThread2, btnThread3;
 
     public Main() {
         super();
-        start = new Image("sample/start.png");
-        fire = new Image("sample/fire.png");
+        start = new Image("lecture05/example99/start.png");
+        fire = new Image("lecture05/example99/fire.png");
 
         pb = new ProgressBar[3];
         im = new ImageView[3];
@@ -59,30 +60,33 @@ public class Main extends Application {
             textField.setText( textField.getText() + "\n" + new Formatter().format("%tT", new GregorianCalendar().getInstance()));
         } );
 
-        Button btnThread1 = new Button("Start heavy computing1");
+        btnThread1 = new Button("Start heavy computing1");
         btnThread1.setPrefHeight(50.0);
         btnThread1.setPrefWidth(85.0);
         btnThread1.setWrapText(true);
         btnThread1.setTextAlignment(TextAlignment.CENTER);
         btnThread1.setOnAction( (ae) -> {
+            btnThread1.setDisable(true);
             new CalcThread(this, 0);
         });
 
-        Button btnThread2 = new Button("Start heavy computing2");
+        btnThread2 = new Button("Start heavy computing2");
         btnThread2.setPrefHeight(50.0);
         btnThread2.setPrefWidth(85.0);
         btnThread2.setWrapText(true);
         btnThread2.setTextAlignment(TextAlignment.CENTER);
         btnThread2.setOnAction( (ae) -> {
+            btnThread2.setDisable(true);
             new CalcThread(this, 1);
         });
 
-        Button btnThread3 = new Button("Start heavy computing3");
+        btnThread3 = new Button("Start heavy computing3");
         btnThread3.setPrefHeight(50.0);
         btnThread3.setPrefWidth(85.0);
         btnThread3.setWrapText(true);
         btnThread3.setTextAlignment(TextAlignment.CENTER);
         btnThread3.setOnAction( (ae) -> {
+            btnThread3.setDisable(true);
             new CalcThread(this, 2);
         });
 
@@ -113,6 +117,14 @@ public class Main extends Application {
 
     public void setProgress(int number, double value) {
         pb[number].setProgress(value);
+    }
+
+    public void setEnable(int number) {
+        switch(number) {
+            case 0: btnThread1.setDisable(false); break;
+            case 1: btnThread1.setDisable(false); break;
+            case 2: btnThread1.setDisable(false); break;
+        }
     }
 
     public static void main(String[] args) {
